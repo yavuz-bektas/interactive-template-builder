@@ -1,0 +1,16 @@
+{
+  "name": "interactive-template-builder",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w client",
+    "server": "npm run dev -w server",
+    "build": "npm run build -w client && npm run build -w server",
+    "test": "npm run test -w client",
+    "test:all": "npm run test -w client && npm run test -w server"
+  }
+}

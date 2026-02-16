@@ -82,28 +82,3 @@ npm run test:all
 
 2. `client/tests/canvasElement.test.ts`
 - Verifies button element renders correct text and styles
-
-## Architecture Decisions
-
-- Pinia store is the single source of truth for:
-  - `currentTemplate`
-  - selected element id
-  - undo/redo history stacks
-  - saved templates list fetched from API
-- Canvas interactions (drag/resize) are coordinated in `CanvasArea.vue` and mutate store through typed actions.
-- History snapshots are captured before meaningful mutations to support deterministic undo/redo.
-- Backend repository keeps templates in memory and writes to JSON file after create/update/delete.
-
-## Assumptions
-
-- The backend accepts minimally validated template payloads and persists full template snapshots.
-- Client and server are run separately (`npm run dev` and `npm run server`) as required.
-- Browser environment supports `crypto.randomUUID()` (fallback ID generation is included on client side).
-
-## If More Time
-
-- Add JSON import UI with conflict handling/version validation
-- Add server integration tests with `supertest`
-- Add richer element constraints (snap-to-grid, alignment guides)
-- Reduce history noise for no-op drag starts (threshold-based interaction tracking)
-- Add template duplication and autosave drafts
